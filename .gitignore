@@ -24,6 +24,7 @@ pip-log.txt
 # Unit test / coverage reports
 .coverage
 .tox
+htmlcov
 nosetests.xml
 
 # Translations
@@ -40,3 +41,7 @@ output/*/index.html
 
 # Sphinx
 docs/_build
+
+# PyCharm
+.idea/
+
