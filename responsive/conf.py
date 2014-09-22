@@ -21,12 +21,16 @@ class ResponsiveAppConf(AppConf):
         {% endrenderblockif %}
 
     """
+
     COOKIE_NAME = 'clientinfo'
     COOKIE_AGE = 365   # days
 
-    # Borrowed from ZURB Foundation framework
-    # See http://foundation.zurb.com/docs/media-queries.html
+    # prefix for classes for showing and hiding content by device via media query
+    CSS_VISIBLE = 'visible-'
+    CSS_HIDDEN = 'hidden-'
 
+    # Borrowed from ZURB Foundation framework.
+    # See http://foundation.zurb.com/docs/media-queries.html
     BREAKPOINTS = {
         'small': {
             'verbose_name': _('Small screens'),
