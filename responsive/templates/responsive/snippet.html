@@ -1,13 +1,11 @@
 
 <script type="text/javascript">
 	(function () {
-		var	clientInfo = {
-			deviceWidth: screen.width,
-			deviceHeight: screen.height,
-			devicePixelRatio: ('devicePixelRatio' in window) ? window.devicePixelRatio : (
-				(('deviceXDPI' in window) && ('logicalXDPI' in window)) ? (window.deviceXDPI / window.logicalXDPI) : 1)
-		};
-		document.cookie = "{{ cookie_name }}=" + JSON.stringify(clientInfo) + "; max-age={{ cookie_age }}; expires={{ cookie_expires }}; path=/";
+		var dpr = ('devicePixelRatio' in window) ? window.devicePixelRatio : 
+			(('deviceXDPI' in window) && ('logicalXDPI' in window)) ? (window.deviceXDPI / window.logicalXDPI) : 1
+
+		var	clientInfo = screen.width + ":" + screen.height + ':' + dpr;
+		document.cookie = "{{ cookie_name }}=" + clientInfo + "; max-age={{ cookie_age }}; expires={{ cookie_expires }}; path=/";
 		if (navigator.cookieEnabled) document.location.reload(true);
 	})();
 </script>
