@@ -21,7 +21,7 @@ django-responsive2
   :target: https://coveralls.io/r/mishbahr/django-responsive2?branch=master
 
 
-Utilities for building responsive websites in Django.
+django-responsive2 is an experimental Django project that gives web designers tools for building responsive websites. It can dynamically swap content based on breakpoints.
 
 Features
 --------
