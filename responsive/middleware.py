@@ -1,16 +1,12 @@
 from __future__ import unicode_literals
 
 import datetime
-import logging
 import re
-
 
 from django.template.loader import render_to_string
 from django.utils.encoding import force_text
 
 from .conf import settings
-
-logger = logging.getLogger('responsive')
 
 
 class ResponsiveMiddleware(object):
@@ -20,19 +16,15 @@ class ResponsiveMiddleware(object):
         if responsive_cookie:
             parts = responsive_cookie.split(':')
             if len(parts) != 3:
-                logger.error(
-                    'InvalidCookie: Something went wrong while decoding responsive cookie.')
+                request.INVALID_RESPONSIVE_COOKIE = True
                 return
 
             try:
                 width, height, pixelratio = parts
                 width, height, pixelratio = int(width), int(height), float(pixelratio)
             except ValueError:
-                logger.error(
-                    'ValueError: Something went wrong while decoding responsive cookie.')
+                request.INVALID_RESPONSIVE_COOKIE = True
                 return
-
-            print width, height, pixelratio
 
     def process_response(self, request, response):
         html_types = ('text/html', 'application/xhtml+xml')
@@ -43,7 +35,8 @@ class ResponsiveMiddleware(object):
                 content_type not in html_types)):
             return response
 
-        if settings.RESPONSIVE_COOKIE_NAME not in request.COOKIES:
+        if settings.RESPONSIVE_COOKIE_NAME not in request.COOKIES \
+                or getattr(request, 'INVALID_RESPONSIVE_COOKIE', False):
             expires = datetime.datetime.utcnow() + \
                 datetime.timedelta(days=settings.RESPONSIVE_COOKIE_AGE)
             snippet = render_to_string('responsive/snippet.html', {
