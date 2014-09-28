@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_text
 
 from .conf import settings
+from .utils import Device
 
 
 class ResponsiveMiddleware(object):
@@ -20,11 +21,19 @@ class ResponsiveMiddleware(object):
                 return
 
             try:
-                width, height, pixelratio = parts
-                width, height, pixelratio = int(width), int(height), float(pixelratio)
+                width, height, pixel_ratio = parts
+                width, height, pixel_ratio = int(width), int(height), float(pixel_ratio)
             except ValueError:
                 request.INVALID_RESPONSIVE_COOKIE = True
                 return
+
+            device_info = {
+                'width': width,
+                'height': height,
+                'pixel_ratio': pixel_ratio
+            }
+
+            request.device = Device(**device_info)
 
     def process_response(self, request, response):
         html_types = ('text/html', 'application/xhtml+xml')
