@@ -4,6 +4,7 @@ import datetime
 import re
 
 from django.template.loader import render_to_string
+from django.utils.cache import patch_vary_headers
 from django.utils.encoding import force_text
 
 from .conf import settings
@@ -56,6 +57,8 @@ class ResponsiveMiddleware(object):
             pattern = re.compile(b'<head>', re.IGNORECASE)
             response.content = pattern.sub(b'<head>' + snippet, force_text(response.content))
 
-        if response.get('Content-Length', None):
-            response['Content-Length'] = len(response.content)
+            if response.get('Content-Length', None):
+                response['Content-Length'] = len(response.content)
+
+        patch_vary_headers(response, ('Cookie', ))
         return response
