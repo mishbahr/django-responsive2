@@ -7,10 +7,12 @@ from appconf import AppConf
 class ResponsiveAppConf(AppConf):
     """
     While there are several different items we can query on,
-    the ones used for django-responsive2 are min-width and max-width
+    the ones used for django-responsive2 are min-width, max-width, min-height and max-height.
 
     min_width -- Rules applied for any device width over the value defined in the config.
     max_width -- Rules applied for any device width under the value defined in the config.
+    min_height -- Rules applied for any device height over the value defined in the config.
+    max_height -- Rules applied for any device height under the value defined in the config.
     pixel_ratio -- Rules applied for any device with devicePixelRatio defined in the config.
 
     Usage
@@ -25,6 +27,9 @@ class ResponsiveAppConf(AppConf):
 
     COOKIE_NAME = 'clientinfo'
     COOKIE_AGE = 365  # days
+
+    CACHE_PREFIX = 'responsive_'
+    CACHE_DURATION = 60 * 60 * 24 * 356  # 1 year
 
     # prefix for classes for showing and hiding content by device via media query
     CSS_VISIBLE_PREFIX = 'visible-'
