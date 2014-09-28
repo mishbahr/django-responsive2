@@ -9,8 +9,9 @@ class ResponsiveAppConf(AppConf):
     While there are several different items we can query on,
     the ones used for django-responsive2 are min-width and max-width
 
-    min_width -- Rules applied for any device width over the value defined in the query.
-    max_width -- Rules applied for any device width under the value defined in the query.
+    min_width -- Rules applied for any device width over the value defined in the config.
+    max_width -- Rules applied for any device width under the value defined in the config.
+    pixel_ratio -- Rules applied for any device with devicePixelRatio defined in the config.
 
     Usage
     ------
@@ -23,15 +24,15 @@ class ResponsiveAppConf(AppConf):
     """
 
     COOKIE_NAME = 'clientinfo'
-    COOKIE_AGE = 365   # days
+    COOKIE_AGE = 365  # days
 
     # prefix for classes for showing and hiding content by device via media query
-    CSS_VISIBLE = 'visible-'
-    CSS_HIDDEN = 'hidden-'
+    CSS_VISIBLE_PREFIX = 'visible-'
+    CSS_HIDDEN_PREFIX = 'hidden-'
 
     # Borrowed from ZURB Foundation framework.
     # See http://foundation.zurb.com/docs/media-queries.html
-    BREAKPOINTS = {
+    MEDIA_QUERIES = {
         'small': {
             'verbose_name': _('Small screens'),
             'min_width': None,
