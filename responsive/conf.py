@@ -31,7 +31,6 @@ class ResponsiveAppConf(AppConf):
     CACHE_PREFIX = 'responsive_'
     CACHE_DURATION = 60 * 60 * 24 * 356  # 1 year
 
-
     # Borrowed from ZURB Foundation framework.
     # See http://foundation.zurb.com/docs/media-queries.html
     MEDIA_QUERIES = {
