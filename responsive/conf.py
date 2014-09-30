@@ -31,9 +31,6 @@ class ResponsiveAppConf(AppConf):
     CACHE_PREFIX = 'responsive_'
     CACHE_DURATION = 60 * 60 * 24 * 356  # 1 year
 
-    # prefix for classes for showing and hiding content by device via media query
-    CSS_VISIBLE_PREFIX = 'visible-'
-    CSS_HIDDEN_PREFIX = 'hidden-'
 
     # Borrowed from ZURB Foundation framework.
     # See http://foundation.zurb.com/docs/media-queries.html
