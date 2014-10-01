@@ -34,7 +34,8 @@ class ResponsiveMiddleware(object):
                 'pixel_ratio': pixel_ratio
             }
 
-            request.device = Device(**device_info)
+            device = Device(**device_info)
+            setattr(request, settings.RESPONSIVE_VARIABLE_NAME, device)
 
     def process_response(self, request, response):
         html_types = ('text/html', 'application/xhtml+xml')

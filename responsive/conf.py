@@ -31,6 +31,11 @@ class ResponsiveAppConf(AppConf):
     CACHE_PREFIX = 'responsive_'
     CACHE_DURATION = 60 * 60 * 24 * 356  # 1 year
 
+    VARIABLE_NAME = 'device'
+    DEFAULT_WIDTH = 0
+    DEFAULT_HEIGHT = 0
+    DEFAULT_PIXEL_RATIO = 1
+
     # Borrowed from ZURB Foundation framework.
     # See http://foundation.zurb.com/docs/media-queries.html
     MEDIA_QUERIES = {

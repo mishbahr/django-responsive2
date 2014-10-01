@@ -7,8 +7,11 @@ from .conf import settings
 
 
 class Device(object):
+    def __init__(self,
+                 width=settings.RESPONSIVE_DEFAULT_WIDTH,
+                 height=settings.RESPONSIVE_DEFAULT_HEIGHT,
+                 pixel_ratio=settings.RESPONSIVE_DEFAULT_PIXEL_RATIO):
 
-    def __init__(self, width=0, height=0, pixel_ratio=1):
         self.width = int(width)
         self.height = int(height)
         self.pixel_ratio = float(pixel_ratio)
