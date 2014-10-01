@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from django.http import HttpResponse
 from django.test import TestCase
 from django.test.client import RequestFactory
 
-from responsive.middleware import ResponsiveMiddleware
 from responsive.conf import settings
+from responsive.middleware import ResponsiveMiddleware
 from responsive.utils import Device
-
-
-from django.http import HttpResponse
 
 
 def hello(request):
