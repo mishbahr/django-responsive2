@@ -26,7 +26,7 @@ django-responsive2 is an experimental Django project that gives web designers to
 Features
 --------
 
-    * TODO
+* TODO
 
 
 Quickstart
@@ -44,11 +44,12 @@ Quickstart
         ...
     )
 
-3. Add ``django.core.context_processors.request`` to your ``TEMPLATE_CONTEXT_PROCESSORS``::
+3. Add ``django.core.context_processors.request``  and ``responsive.context_processors.device`` to your ``TEMPLATE_CONTEXT_PROCESSORS``::
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...
         'django.core.context_processors.request',
+        'responsive.context_processors.device',
         ...
     )
 
@@ -63,12 +64,12 @@ Quickstart
 Usage
 ------
 
-    * TODO
+* TODO
 
 Configuration
 -------------
 
-    * TODO
+* TODO
 
 Documentation
 -------------
