@@ -8,8 +8,8 @@ def device(request):
     responsive_middleware = 'responsive.middleware.ResponsiveMiddleware'
     if responsive_middleware not in settings.MIDDLEWARE_CLASSES:
         raise ImproperlyConfigured(
-            "responsive context_processors requires the responsive middleware to "
-            "be installed.  Edit your MIDDLEWARE_CLASSES setting to insert"
+            "You must enable the 'ResponsiveMiddleware'. Edit your "
+            "MIDDLEWARE_CLASSES setting to insert"
             "the 'responsive.middleware.ResponsiveMiddleware'")
 
     device_obj = getattr(request, settings.RESPONSIVE_VARIABLE_NAME, None)
