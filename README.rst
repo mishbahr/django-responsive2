@@ -1,5 +1,5 @@
 =============================
-django-responsive2 (WIP)
+django-responsive2 
 =============================
 
 .. image:: http://img.shields.io/travis/mishbahr/django-responsive2.svg?style=flat-square
