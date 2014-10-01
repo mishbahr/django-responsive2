@@ -5,7 +5,8 @@ import re
 
 from django.template.loader import render_to_string
 from django.utils.cache import patch_vary_headers
-from django.utils.encoding import force_text
+from django.utils.encoding import force_text, smart_bytes
+
 
 from .conf import settings
 from .utils import Device
@@ -56,7 +57,7 @@ class ResponsiveMiddleware(object):
                 'cookie_expires': expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
             })
             pattern = re.compile(b'<head>', re.IGNORECASE)
-            response.content = pattern.sub(b'<head>' + snippet, force_text(response.content))
+            response.content = pattern.sub(b'<head>' + smart_bytes(snippet), response.content)
 
             if response.get('Content-Length', None):
                 response['Content-Length'] = len(response.content)
