@@ -83,14 +83,3 @@ class MiddlewareTest(TestCase):
         response = HttpResponse({}, content_type='application/json')
         processed_response = self.middleware.process_response(request, response)
         self.assertNotIn(b'</script>', processed_response.content)
-
-    def test_gzipped_html(self):
-        # Don't insert if the content had been gzipped.
-        request = self.factory.get('/')
-        request.COOKIES = {
-            settings.RESPONSIVE_COOKIE_NAME: '1024:768:2'  # valid responsive cookie
-        }
-        response = hello(request)
-        processed_response = self.middleware.process_response(request, response)
-        processed_response['Content-Encoding'] = 'gzip'
-        self.assertFalse(b'</script>' in processed_response.content)
