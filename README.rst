@@ -64,6 +64,40 @@ In this very simple example, ``col-sm`` will only be rendered for small screen d
 and lastly ``col-lg`` will be visible for large screen devices or any devices that don't
 match the rules for small/medium devices.
 
+Quickstart
+----------
+
+1. Install django-responsive2::
+
+    pip install django-responsive2
+
+2. Add ``responsive`` to ``INSTALLED_APPS``::
+
+    INSTALLED_APPS = (
+        ...
+        'responsive',
+        ...
+    )
+
+3. Add ``django.core.context_processors.request``  and ``responsive.context_processors.device`` to your ``TEMPLATE_CONTEXT_PROCESSORS``::
+
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        ...
+        'django.core.context_processors.request',
+        'responsive.context_processors.device',
+        ...
+    )
+
+4. Add the ``ResponsiveMiddleware`` to MIDDLEWARE_CLASSES::
+
+    MIDDLEWARE_CLASSES = (
+        ...
+        'responsive.middleware.ResponsiveMiddleware',
+        ...
+    )
+
+
+
 Configuration
 -------------
 ``django-responsive2`` lets you to define the breakpoints at which your layout will change,
@@ -135,39 +169,6 @@ Continuing with the example ``RESPONSIVE_MEDIA_QUERIES`` settings above, here’
             {% endif %}
         </div>
     </div>
-
-Quickstart
-----------
-
-1. Install django-responsive2::
-
-    pip install django-responsive2
-
-2. Add ``responsive`` to ``INSTALLED_APPS``::
-
-    INSTALLED_APPS = (
-        ...
-        'responsive',
-        ...
-    )
-
-3. Add ``django.core.context_processors.request``  and ``responsive.context_processors.device`` to your ``TEMPLATE_CONTEXT_PROCESSORS``::
-
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        ...
-        'django.core.context_processors.request',
-        'responsive.context_processors.device',
-        ...
-    )
-
-4. Add the ``ResponsiveMiddleware`` to MIDDLEWARE_CLASSES::
-
-    MIDDLEWARE_CLASSES = (
-        ...
-        'responsive.middleware.ResponsiveMiddleware',
-        ...
-    )
-
 
 Documentation
 -------------
