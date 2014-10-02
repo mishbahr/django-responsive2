@@ -28,9 +28,7 @@ Why would you use django-responsive2?
 
 This project was inspired by Twitter Bootstrap's `Responsive Utilities <http://getbootstrap.com/css/#responsive-utilities>`_.
 
-Bootstrap provides some handful helper classes, for faster mobile-friendly development.
-
-These can be used for showing and hiding content by device via media query combined with large, small, and medium devices.
+Bootstrap provides some handful helper classes, for faster mobile-friendly development. These can be used for showing and hiding content by device via media query combined with large, small, and medium devices.
 
 More Information: http://getbootstrap.com/css/#responsive-utilities
 
@@ -59,9 +57,9 @@ It’s best explained through examples.
         </div>
     </div>
 
-In this very simple example, `col-sm` will only be rendered for small screen devices
-(e.g. an iPhone), `col-m` will be displayed for medium screen devices (e.g. an iPad)
-and lastly `col-lg` will be visible for large screen devices or any devices that don't
+In this very simple example, ``col-sm`` will only be rendered for small screen devices
+(e.g. an iPhone), ``col-m`` will be displayed for medium screen devices (e.g. an iPad)
+and lastly ``col-lg`` will be visible for large screen devices or any devices that don't
 match the rules for small/medium devices.
 
 Configuration
