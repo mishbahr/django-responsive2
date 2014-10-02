@@ -125,18 +125,16 @@ is the name of the media query. This attribute returns ``True/False``.
 
 Continuing with the example ``RESPONSIVE_MEDIA_QUERIES`` settings above, here’s a simple corresponding template::
 
-	<div class="container">
-		<div class="row">
-			{% if device.is_iphone %}
-				<div class="app-store">
-					<a href="https://itunes.apple.com/gb/app/yo./id834335592">Available on the App Store</a>
-				</div>
-			{% endif %}
-
-			...
-
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            {% if device.is_iphone %}
+                {# this snippet will only be rendered for retina devices with min_width = 320 #}
+                <div class="app-store">
+                    <a href="#">Available on the App Store</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
 
 Quickstart
 ----------
