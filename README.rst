@@ -154,7 +154,7 @@ in your ``settings.py``. For example::
         ...
     }
 
-For every media queries, the  `device` object will have a ``is_FOO`` attribute, where FOO
+For every media queries, the  ``device`` object will have a ``is_FOO`` attribute, where FOO
 is the name of the media query. This attribute returns ``True/False``.
 
 Continuing with the example ``RESPONSIVE_MEDIA_QUERIES`` settings above, here’s a simple corresponding template::
@@ -162,7 +162,7 @@ Continuing with the example ``RESPONSIVE_MEDIA_QUERIES`` settings above, here’
     <div class="container">
         <div class="row">
             {% if device.is_iphone %}
-                {# this snippet will only be rendered for retina devices with min_width = 320 #}
+                {# this snippet will only be rendered for retina devices with minimum device width 320 #}
                 <div class="app-store">
                     <a href="#">Available on the App Store</a>
                 </div>
