@@ -27,16 +27,13 @@ responsive websites. It can dynamically swap content based on breakpoints.
 Why would you use django-responsive2?
 -------------------------------------
 
-This project was inspired by Twitter Bootstrap's `Responsive Utilities <http://getbootstrap.com/css/#responsive-utilities>`_.
-
-Bootstrap provides some handful helper classes, for faster mobile-friendly development. These
+This project was inspired by Twitter Bootstrap's `Responsive Utilities <http://getbootstrap.com/css/#responsive-utilities>`_. Bootstrap provides some handful helper classes, for faster mobile-friendly development. These
 can be used for showing and hiding content by device via media query combined with large, small,
 and medium devices.
 
-More Information: http://getbootstrap.com/css/#responsive-utilities
 
 Similarly ``django-responsive2`` can be used to render different content based on device
-screen sizes and pixel ratios. It’s best explained through examples.
+screen sizes and pixel ratios. It’s best explained through examples
 
 
 **Sample template**::
