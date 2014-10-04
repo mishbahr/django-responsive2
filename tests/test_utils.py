@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from django.core.cache import cache
 from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils.translation import ugettext_lazy as _
-from django.core.cache import cache
 
 from responsive.conf import settings
 from responsive.utils import Device
-
 
 
 class UtilsTest(TestCase):
@@ -73,5 +72,3 @@ class UtilsTest(TestCase):
         device = Device(width=1366, height=768, pixel_ratio=2)
         self.assertIn('large', device.matched)
         self.assertIn('retina', device.matched)
-
-

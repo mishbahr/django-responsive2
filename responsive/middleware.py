@@ -5,7 +5,7 @@ import re
 
 from django.template.loader import render_to_string
 from django.utils.cache import patch_vary_headers
-from django.utils.encoding import force_text, smart_bytes
+from django.utils.encoding import smart_bytes
 
 
 from .conf import settings
