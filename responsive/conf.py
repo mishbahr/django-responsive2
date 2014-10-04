@@ -63,6 +63,9 @@ class ResponsiveAppConf(AppConf):
             'verbose_name': _('XXLarge screens'),
             'min_width': 1921,
             'max_width': None,
+        },
+        'retina': {
+            'pixel_ratio': 2
         }
     }
 
