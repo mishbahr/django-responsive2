@@ -17,16 +17,16 @@ class Device(object):
         self.pixel_ratio = float(pixel_ratio)
         self.matched = []
 
-        cache_key = '%(prefix)s%(width)s_%(height)s_%(pixel_ratio)s' % {
+        self.cache_key = '%(prefix)s%(width)s_%(height)s_%(pixel_ratio)s' % {
             'prefix': settings.RESPONSIVE_CACHE_PREFIX,
             'width': self.width,
             'height': self.height,
             'pixel_ratio': self.pixel_ratio
         }
-        matches = cache.get(cache_key, None)
+        matches = cache.get(self.cache_key, None)
         if not matches:
             matches = self.match_media_queries()
-            cache.set(cache_key, matches, settings.RESPONSIVE_CACHE_DURATION)
+            cache.set(self.cache_key, matches, settings.RESPONSIVE_CACHE_DURATION)
 
         for name, value in six.iteritems(matches):
             setattr(self, 'is_%s' % name, value)
