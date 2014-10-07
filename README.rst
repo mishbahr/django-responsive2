@@ -83,24 +83,23 @@ e.g. ``['small', 'retina']`` ::
 
 	def home(request):
 
-		if 'retina' in request.device.matched:
-			thumbnail_high_resolution = True
-		else:
-			thumbnail_high_resolution = False
+        if 'retina' in request.device.matched:
+            thumbnail_high_resolution = True
+        else:
+            thumbnail_high_resolution = False
 
-		if request.device.is_small:
-			hide_ads = True
-		else:
-			hide_ads = False
+        if request.device.is_small:
+            hide_ads = True
+        else:
+            hide_ads = False
 
-		...
+        ...
+        context = {
+            'thumbnail_high_resolution': thumbnail_high_resolution,
+            'hide_ads': hide_ads
+        }
 
-		context = {
-			'thumbnail_high_resolution': thumbnail_high_resolution
-			'hide_ads': hide_ads
-		}
-
-		...
+        ...
 
 Quickstart
 ----------
