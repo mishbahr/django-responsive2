@@ -31,35 +31,76 @@ This project was inspired by Twitter Bootstrap's `Responsive Utilities <http://g
 can be used for showing and hiding content by device via media query combined with large, small,
 and medium devices.
 
+Similarly ``django-responsive2`` can be used to render different content based on device screen sizes and pixel ratios.
+However, while it is very useful to show/hide content using css display property, Bootstrap Responsive Utilities does not actually prevent the content from being loaded on to the page. It is best explained through examples.
 
-Similarly ``django-responsive2`` can be used to render different content based on device
-screen sizes and pixel ratios. It’s best explained through examples
 
-
-**Sample template**::
+**Sample example template using django-responsive2**::
 
     <div class="container">
         <div class="row">
             {% if device.is_xsmall or device.is_small %}
                 <div class="col-sm">
-                    Visible on x-small/small
+                    {# Rendered for x-small/small screen devices #}
+                    <img src="images/myimage_sm.jpg" alt="Descriptive alt tag" />
                 </div>
             {% elif device.is_medium %}
                 <div class="col-md">
-                    Visible on medium screens
+                    {# Rendered for medium screen devices #}
+                    <img src="images/myimage_md.jpg" alt="Descriptive alt tag" />
                 </div>
             {% else %}
                 <div class="col-lg">
-                    Visible on large/xlarge screens
+                    {# Rendered for large/xlarge screen devices #}
+                    <img src="images/myimage_lg.jpg" alt="Descriptive alt tag" />
                 </div>
             {% endif %}
         </div>
     </div>
 
-In this very simple example, ``col-sm`` will only be rendered for small screen devices
-(e.g. an iPhone), ``col-m`` will be displayed for medium screen devices (e.g. an iPad)
-and lastly ``col-lg`` will be visible for large screen devices or any devices that don't
-match the rules for small/medium devices.
+In this very simple example, using the Bootstrap Responsive Utilities, all 3 images would have been loaded on to the page, wasting precious bandwidth, together with increase in page load time.
+
+In comparison, using ``django-responsive2``, only ``col-sm`` will be rendered for small screen devices (e.g. an iPhone), ``col-m`` will be displayed for medium screen devices (e.g. an iPad) and lastly ``col-lg`` will be visible for large screen devices or any devices that do not match the rules for small/medium devices.
+
+
+Using django-responsive2 in your views
+--------------------------------------
+
+You can also use the ``django-responsive2`` in your Django views to do particular things based on the matched media queries for the visitors device.
+
+The ``ResponsiveMiddleware`` middleware sets the ``device`` attribute on every request object, so you can use ``request.device`` to get the device information for your visitors::
+
+	MIDDLEWARE_CLASSES=(
+	    ...
+	    'responsive.middleware.ResponsiveMiddleware'
+	    ...
+	)
+
+Here’s an (verbose) example of what the a view could look like, ``request.device.matched`` returns a list of matched media queries for the visitors device.
+
+e.g. ``['small', 'retina']`` ::
+
+
+	def home(request):
+
+		if 'retina' in request.device.matched:
+			thumbnail_high_resolution = True
+		else:
+			thumbnail_high_resolution = False
+
+		if request.device.is_small:
+			hide_ads = True
+		else:
+			hide_ads = False
+
+		...
+
+		context = {
+			'thumbnail_high_resolution': thumbnail_high_resolution
+			'hide_ads': hide_ads
+		}
+
+		...
 
 Quickstart
 ----------
