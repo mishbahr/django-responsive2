@@ -15,19 +15,22 @@ version = responsive.__version__
 
 if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist upload')
-    print("You probably want to also tag the version now:")
-    print("  git tag -a %s -m 'version %s'" % (version, version))
-    print("  git push --tags")
     sys.exit()
 
+if sys.argv[-1] == 'tag':
+    print("Tagging the version on github:")
+    os.system("git tag -a %s -m 'version %s'" % (version, version))
+    os.system("git push --tags")
+    sys.exit()
+
+
 readme = open('README.rst').read()
-history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='django-responsive2',
     version=version,
     description="""Utilities for building responsive websites in Django""",
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     author='Mishbah Razzaque',
     author_email='mishbahx@gmail.com',
     url='https://github.com/mishbahr/django-responsive2',
@@ -43,7 +46,7 @@ setup(
     zip_safe=False,
     keywords='django-responsive2, responsive',
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
