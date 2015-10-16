@@ -56,8 +56,8 @@ class ResponsiveMiddleware(object):
                 'cookie_age': 60 * 60 * 24 * settings.RESPONSIVE_COOKIE_AGE,  # convert to secs
                 'cookie_expires': expires.strftime('%a, %d %b %Y %H:%M:%S GMT')
             })
-            pattern = re.compile(b'<head>', re.IGNORECASE)
-            response.content = pattern.sub(b'<head>' + smart_bytes(snippet), response.content)
+            pattern = re.compile(b'<head(.*?)>', re.IGNORECASE)
+            response.content = pattern.sub(b'<head\g<1>>' + smart_bytes(snippet), response.content)
 
             if response.get('Content-Length', None):
                 response['Content-Length'] = len(response.content)
