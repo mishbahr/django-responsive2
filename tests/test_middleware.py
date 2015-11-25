@@ -24,6 +24,17 @@ def hello(request):
     return HttpResponse(html)
 
 
+def html_without_head(request):
+    html = """
+        <html>
+            <body>
+                <header>Test</header>
+            </body>
+        </html>
+    """
+    return HttpResponse(html)
+
+
 class MiddlewareTest(TestCase):
 
     def setUp(self):
@@ -65,6 +76,14 @@ class MiddlewareTest(TestCase):
         self.assertFalse(b'</script>' in response.content)
         processed_response = self.middleware.process_response(request, response)
         self.assertTrue(b'</script>' in processed_response.content)
+
+    def test_responsive_snippet_not_injected_without_head(self):
+        request = self.factory.get('/')
+        response = html_without_head(request)
+        # test no <script> tag before any processing by the middleware
+        self.assertFalse(b'</script>' in response.content)
+        processed_response = self.middleware.process_response(request, response)
+        self.assertFalse(b'</script>' in processed_response.content)
 
     def test_snippet_is_not_injected_if_reponsive_cookie_already_exists(self):
         request = self.factory.get('/')
