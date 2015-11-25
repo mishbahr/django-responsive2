@@ -58,7 +58,7 @@ class MiddlewareTest(TestCase):
         self.middleware.process_request(request)
         self.assertTrue(getattr(request, 'INVALID_RESPONSIVE_COOKIE'))
 
-    def test_reposnsive_htnl_snippet_is_injected_into_response(self):
+    def test_reponsive_html_snippet_is_injected_into_response(self):
         request = self.factory.get('/')
         response = hello(request)
         # test no <script> tag before any processing by the middleware
