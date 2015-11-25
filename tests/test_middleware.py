@@ -10,7 +10,7 @@ from responsive.middleware import ResponsiveMiddleware
 from responsive.utils import Device
 
 
-def hello(request):
+def html_with_head(request):
     html = """
         <html>
             <head>
@@ -71,7 +71,7 @@ class MiddlewareTest(TestCase):
 
     def test_reponsive_html_snippet_is_injected_into_response(self):
         request = self.factory.get('/')
-        response = hello(request)
+        response = html_with_head(request)
         # test no <script> tag before any processing by the middleware
         self.assertFalse(b'</script>' in response.content)
         processed_response = self.middleware.process_response(request, response)
@@ -90,7 +90,7 @@ class MiddlewareTest(TestCase):
         request.COOKIES = {
             settings.RESPONSIVE_COOKIE_NAME: '1024:768:2'  # valid responsive cookie
         }
-        response = hello(request)
+        response = html_with_head(request)
         processed_response = self.middleware.process_response(request, response)
         self.assertFalse(b'</script>' in processed_response.content)
 
