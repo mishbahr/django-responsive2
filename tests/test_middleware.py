@@ -10,7 +10,7 @@ from responsive.middleware import ResponsiveMiddleware
 from responsive.utils import Device
 
 
-def hello(request):
+def html_with_head(request):
     html = """
         <html>
             <head>
@@ -18,6 +18,17 @@ def hello(request):
             </head>
             <body>
 
+            </body>
+        </html>
+    """
+    return HttpResponse(html)
+
+
+def html_without_head(request):
+    html = """
+        <html>
+            <body>
+                <header>Test</header>
             </body>
         </html>
     """
@@ -58,20 +69,28 @@ class MiddlewareTest(TestCase):
         self.middleware.process_request(request)
         self.assertTrue(getattr(request, 'INVALID_RESPONSIVE_COOKIE'))
 
-    def test_reposnsive_htnl_snippet_is_injected_into_response(self):
+    def test_reponsive_html_snippet_is_injected_into_response(self):
         request = self.factory.get('/')
-        response = hello(request)
+        response = html_with_head(request)
         # test no <script> tag before any processing by the middleware
         self.assertFalse(b'</script>' in response.content)
         processed_response = self.middleware.process_response(request, response)
         self.assertTrue(b'</script>' in processed_response.content)
+
+    def test_responsive_snippet_not_injected_without_head(self):
+        request = self.factory.get('/')
+        response = html_without_head(request)
+        # test no <script> tag before any processing by the middleware
+        self.assertFalse(b'</script>' in response.content)
+        processed_response = self.middleware.process_response(request, response)
+        self.assertFalse(b'</script>' in processed_response.content)
 
     def test_snippet_is_not_injected_if_reponsive_cookie_already_exists(self):
         request = self.factory.get('/')
         request.COOKIES = {
             settings.RESPONSIVE_COOKIE_NAME: '1024:768:2'  # valid responsive cookie
         }
-        response = hello(request)
+        response = html_with_head(request)
         processed_response = self.middleware.process_response(request, response)
         self.assertFalse(b'</script>' in processed_response.content)
 
