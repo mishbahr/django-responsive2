@@ -22,7 +22,7 @@ django-responsive2
 
 
 django-responsive2 is an experimental Django app that gives web designers tools for building
-responsive websites. It can dynamically swap content based on breakpoints.
+responsive websites. It can dynamically swap content based on breakpoints. Tested on Django>=1.8.
 
 Why would you use django-responsive2?
 -------------------------------------
