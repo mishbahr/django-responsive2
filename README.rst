@@ -35,7 +35,9 @@ Similarly ``django-responsive2`` can be used to render different content based o
 However, while it is very useful to show/hide content using css display property, Bootstrap Responsive Utilities does not actually prevent the content from being loaded on to the page. It is best explained through examples.
 
 
-**Sample example template using django-responsive2**::
+**Sample example template using django-responsive2**:
+
+.. code-block:: html+django
 
     <div class="container">
         <div class="row">
@@ -68,9 +70,11 @@ Using django-responsive2 in your views
 
 You can also use the ``django-responsive2`` in your Django views to do particular things based on the matched media queries for the visitors device.
 
-The ``ResponsiveMiddleware`` middleware sets the ``device`` attribute on every request object, so you can use ``request.device`` to get the device information for your visitors::
+The ``ResponsiveMiddleware`` middleware sets the ``device`` attribute on every request object, so you can use ``request.device`` to get the device information for your visitors:
 
-	MIDDLEWARE_CLASSES=(
+.. code-block:: python
+
+	MIDDLEWARE_CLASSES = (
 	    ...
 	    'responsive.middleware.ResponsiveMiddleware'
 	    ...
@@ -78,10 +82,11 @@ The ``ResponsiveMiddleware`` middleware sets the ``device`` attribute on every r
 
 Here’s an (verbose) example of what the a view could look like, ``request.device.matched`` returns a list of matched media queries for the visitors device.
 
-e.g. ``['small', 'retina']`` ::
+e.g. ``['small', 'retina']`` :
 
+.. code-block:: python
 
-	def home(request):
+    def home(request):
 
         if 'retina' in request.device.matched:
             thumbnail_high_resolution = True
@@ -104,11 +109,15 @@ e.g. ``['small', 'retina']`` ::
 Quickstart
 ----------
 
-1. Install django-responsive2::
+1. Install django-responsive2:
+
+   .. code-block:: bash
 
     pip install django-responsive2
 
-2. Add ``responsive`` to ``INSTALLED_APPS``::
+2. Add ``responsive`` to ``INSTALLED_APPS``:
+
+   .. code-block:: python
 
     INSTALLED_APPS = (
         ...
@@ -116,7 +125,9 @@ Quickstart
         ...
     )
 
-3. Add ``django.core.context_processors.request``  and ``responsive.context_processors.device`` to your ``TEMPLATE_CONTEXT_PROCESSORS``::
+3. Add ``django.core.context_processors.request``  and ``responsive.context_processors.device`` to your ``TEMPLATE_CONTEXT_PROCESSORS``:
+
+   .. code-block:: python
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...
@@ -125,7 +136,9 @@ Quickstart
         ...
     )
 
-4. Add the ``ResponsiveMiddleware`` to MIDDLEWARE_CLASSES::
+4. Add the ``ResponsiveMiddleware`` to MIDDLEWARE_CLASSES:
+
+   .. code-block:: python
 
     MIDDLEWARE_CLASSES = (
         ...
@@ -138,7 +151,9 @@ Quickstart
 Configuration
 -------------
 ``django-responsive2`` lets you to define the breakpoints at which your layout will change,
-adapting to different screen sizes.  Here's the default breakpoints::
+adapting to different screen sizes.  Here's the default breakpoints:
+
+.. code-block:: python
 
     RESPONSIVE_MEDIA_QUERIES = {
         'small': {
@@ -180,7 +195,9 @@ are min-width, max-width, min-height and max-height.
 * pixel_ratio — Rules applied for any device with devicePixelRatio defined in the config.
 
 You can override the default media queries by defining own in your ``RESPONSIVE_MEDIA_QUERIES``
-in your ``settings.py``. For example::
+in your ``settings.py``. For example:
+
+.. code-block:: python
 
     RESPONSIVE_MEDIA_QUERIES = {
         'iphone': {
@@ -194,7 +211,9 @@ in your ``settings.py``. For example::
 For every media queries, the  ``device`` object will have a ``is_FOO`` attribute, where FOO
 is the name of the media query. This attribute returns ``True/False``.
 
-Continuing with the example ``RESPONSIVE_MEDIA_QUERIES`` settings above, here’s a simple corresponding template::
+Continuing with the example ``RESPONSIVE_MEDIA_QUERIES`` settings above, here’s a simple corresponding template:
+
+.. code-block:: html+django
 
     <div class="container">
         <div class="row">
