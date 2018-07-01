@@ -6,13 +6,13 @@ import re
 from django.template.loader import render_to_string
 from django.utils.cache import patch_vary_headers
 from django.utils.encoding import smart_bytes
-
+from django.utils.deprecation import MiddlewareMixin
 
 from .conf import settings
 from .utils import Device
 
 
-class ResponsiveMiddleware(object):
+class ResponsiveMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         responsive_cookie = request.COOKIES.get(settings.RESPONSIVE_COOKIE_NAME, None)
