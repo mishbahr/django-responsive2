@@ -74,7 +74,7 @@ The ``ResponsiveMiddleware`` middleware sets the ``device`` attribute on every r
 
 .. code-block:: python
 
-	MIDDLEWARE_CLASSES = (
+	MIDDLEWARE = (
 	    ...
 	    'responsive.middleware.ResponsiveMiddleware'
 	    ...
@@ -129,18 +129,25 @@ Quickstart
 
    .. code-block:: python
 
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        ...
-        'django.core.context_processors.request',
-        'responsive.context_processors.device',
-        ...
-    )
+    TEMPLATES = [
+	    {
+	        ...
+	        'OPTIONS': {
+	            'context_processors': [
+	                ...
+	                'django.template.context_processors.request',
+	                'responsive.context_processors.device',
+	                ...
+	            ],
+	        },
+	    },
+	]
 
 4. Add the ``ResponsiveMiddleware`` to MIDDLEWARE_CLASSES:
 
    .. code-block:: python
 
-    MIDDLEWARE_CLASSES = (
+    MIDDLEWARE = (
         ...
         'responsive.middleware.ResponsiveMiddleware',
         ...
