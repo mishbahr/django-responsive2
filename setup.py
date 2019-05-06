@@ -24,7 +24,7 @@ if sys.argv[-1] == 'tag':
     sys.exit()
 
 
-readme = open('README.rst').read()
+readme = open('README.rst', 'rt', encoding='UTF-8').read()
 
 setup(
     name='django-responsive2',
